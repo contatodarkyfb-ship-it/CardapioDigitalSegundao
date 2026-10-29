@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7efdf">
+<meta name="description" content="Cardápio digital Brasil à Mesa — EXPO 2026, turma do 2º ano do Colégio Jim Willson.">
+<title>Brasil à Mesa — Cardápio Digital | Segundão 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap">
+<style>
+:root{--paper:#f7efdf;--cream:#fffaf0;--ink:#292514;--ol:#454825;--old:#282d18;--red:#92381f;--redd:#6f2818;--gold:#b58a4e;--lt:#f3d9a4;--ez:cubic-bezier(.2,.8,.2,1);--hd:"Playfair Display",Georgia,serif;--bd:Lora,Georgia,serif}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden}
+body{display:grid;place-items:center;background:radial-gradient(ellipse at 50% 45%,rgba(64,69,35,.28),transparent 55%),#14150e;color:var(--ink);font-family:var(--bd)}
+.stage{position:relative;isolation:isolate;container-type:size;width:min(100vw,56.25dvh);height:min(100dvh,177.7778vw);overflow:hidden;background:var(--paper);box-shadow:0 30px 100px rgba(0,0,0,.5);border:1px solid rgba(196,156,94,.65)}
+/* TV/monitor na vertical e celular em retrato: o cardápio ocupa a tela inteira, sem faixas pretas, borda ou sombra.
+   Em paisagem (preview no computador) continua o quadro 9:16 centralizado. */
+@media(orientation:portrait){.stage{width:100vw;height:100dvh;border:0;box-shadow:none}}
+.stage:before{content:"";position:absolute;inset:2%;z-index:12;border:1px solid rgba(126,73,33,.6);outline:1px solid rgba(181,138,78,.25);outline-offset:4px;pointer-events:none}
+.stage:after{content:"";position:absolute;inset:0;z-index:11;pointer-events:none;opacity:.07;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;visibility:hidden;overflow:hidden;font-size:max(min(2.45cqw,1.378cqh),10.5px);line-height:1.3;text-align:center}
+.on{visibility:visible;z-index:3}.out{z-index:2}
+.paper{position:absolute;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#fffefa,#f9f1e1 60%,#eee0c7)}
+.paper:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 30% 30%,rgba(181,138,78,.18),transparent 35%),radial-gradient(circle at 75% 70%,rgba(146,56,31,.1),transparent 38%)}
+.on .paper:before{animation:drift 20s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(8%,-6%) rotate(6deg)}}
+.bot{position:absolute;z-index:-1;width:36%;opacity:.5;pointer-events:none;transform-origin:0 100%}
+.tl{top:-2%;left:-4%;transform:rotate(-7deg)}.tr{top:-2%;right:-4%;transform:scaleX(-1) rotate(-7deg)}.bl{bottom:-2%;left:-4%;transform:rotate(8deg)}.br{bottom:-2%;right:-4%;transform:scaleX(-1) rotate(8deg)}
+.bl,.br{opacity:.3}.menu .br{width:24%;opacity:.28}
+.on .bot{animation:sway 9s ease-in-out infinite alternate}.on .tr,.on .bl{animation-duration:11s;animation-delay:-3s}
+@keyframes sway{from{rotate:-2.2deg}to{rotate:2.6deg}}
+/* Entradas: cada elemento chega em sequência depois que a onda de transição abre a tela */
+.on [data-i]{animation:var(--k,up) 1.1s var(--ez) backwards;animation-delay:calc(.2s + var(--d,0)*1ms)}
+[data-i=l]{--k:inl}[data-i=r]{--k:inr}[data-i=z]{--k:zoom}
+@keyframes up{from{opacity:0;transform:translateY(1.2em)}}
+@keyframes inl{from{opacity:0;transform:translateX(-1.4em)}}
+@keyframes inr{from{opacity:0;transform:translateX(1.4em)}}
+@keyframes zoom{from{opacity:0;transform:scale(.88)}}
+@keyframes draw{from{transform:scaleX(0)}}
+.ch{display:inline-block}
+.on .ch{animation-name:chin,wave;animation-duration:1.1s,5s;animation-timing-function:var(--ez),ease-in-out;animation-delay:calc(.3s + var(--i)*50ms),calc(2s + var(--i)*140ms);animation-iteration-count:1,infinite;animation-fill-mode:backwards,none}
+@keyframes chin{from{opacity:0;transform:translateY(.6em) scale(.8)}}
+@keyframes wave{50%{translate:0 -.05em}}
+.brand{font:900 1em/1 var(--hd);letter-spacing:-.02em;color:var(--old)}.brand i{color:var(--red);font-weight:700}
+.eb{font-size:.8em;font-weight:700;letter-spacing:.14em;color:var(--ol)}
+.orn{display:flex;align-items:center;justify-content:center;gap:.7em;width:100%;color:var(--red)}
+.orn:before,.orn:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn:before{transform-origin:right}.orn:after{transform-origin:left;background:linear-gradient(270deg,transparent,var(--gold))}
+.on .orn:before,.on .orn:after{animation:draw 1.3s var(--ez) backwards;animation-delay:calc(.6s + var(--d,0)*1ms)}
+.on .orn b{display:inline-block;animation:spin 14s linear infinite}
+@keyframes spin{to{rotate:360deg}}
+.mh{display:grid;justify-items:center;gap:.35em;width:100%}
+.mh .brand{font-size:1.25em}
+.mh h1{margin:0;font:900 4.2em/.95 var(--hd);color:var(--redd);letter-spacing:-.02em}
+.mh .orn{width:70%;font:italic 500 .9em var(--bd)}
+.ev{font-size:.78em;font-weight:700;letter-spacing:.1em;color:var(--old)}
+/* Abertura */
+.hero{align-items:center;justify-content:space-between;padding:8% 6.5% 15%}
+.hero .brand{font-size:4.3em}.hero .eb{font-size:.82em}
+.sub{font:italic 500 1.1em var(--bd);color:#6b5b43}
+.halo{position:relative;width:min(82%,45cqh);aspect-ratio:1}
+.halo:before,.halo:after{content:"";position:absolute;inset:-4%;border:1px solid var(--gold);border-radius:8px;opacity:0}
+.on .halo:before{animation:ripple 5.5s ease-out 1.8s infinite}.on .halo:after{animation:ripple 5.5s ease-out 4.5s infinite}
+@keyframes ripple{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.3);opacity:0}}
+.plaque{position:relative;width:100%;height:100%;padding:1.2%;overflow:hidden;border:1px solid rgba(157,113,54,.5);border-radius:6px;background:#fffefa;box-shadow:0 1.8em 3.6em rgba(75,54,27,.18),0 .2em .6em rgba(75,54,27,.1)}
+.plaque img{display:block;width:100%;height:100%;object-fit:contain}
+.plaque:after{content:"";position:absolute;top:-10%;bottom:-10%;left:-40%;width:26%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent)}
+.on .plaque{animation:float 7s ease-in-out 2s infinite alternate}.on .plaque:after{animation:sheen 6s ease-in-out 2.4s infinite}
+@keyframes float{to{translate:0 -1.4%}}
+@keyframes sheen{0%,25%{left:-40%}60%,100%{left:140%}}
+.ft{display:grid;gap:.5em;justify-items:center;width:100%}
+.mark{width:88%;font:900 1.35em var(--hd);letter-spacing:.2em;color:var(--redd)}
+.cap{font-size:1.05em;color:#5f5140}.note{font-size:.8em;font-style:italic;color:#8a7757}
+/* Cardápio */
+.menu{padding:6.2% 5.8% 8.5%;gap:1.1em;justify-content:space-between;font-size:max(min(2.6cqw,1.4625cqh),10.5px)}
+.feat,.card{position:relative;text-align:left;border-radius:.7em;padding:.85em 1em 1em}
+.feat{color:var(--cream);overflow:hidden;background:linear-gradient(120deg,#3b4020,#50552c 50%,#3e4322);box-shadow:0 .8em 2em rgba(45,40,23,.25),inset 0 0 0 .12em rgba(181,138,78,.55)}
+.feat:before{content:"";position:absolute;inset:.35em;border:1px solid rgba(243,217,164,.4);border-radius:.45em;pointer-events:none}
+.feat:after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;background:linear-gradient(100deg,transparent,rgba(255,236,190,.28),transparent)}
+.on .feat:after{animation:sheen 7s ease-in-out 3s infinite}
+.feat h2{margin:0;text-align:center;font:700 1.5em/1.1 var(--hd);color:var(--lt)}
+.feat h2:before,.feat h2:after{content:"❧";display:inline-block;margin:0 .5em;color:var(--gold)}.feat h2:after{transform:scaleX(-1)}
+.on .feat h2:before,.on .feat h2:after{animation:leaf 5s ease-in-out infinite alternate}
+@keyframes leaf{to{rotate:-14deg}}
+.tiers,.how{display:grid;grid-template-columns:repeat(3,1fr);gap:.7em}
+.tiers{margin:.7em 0}
+.tier{display:grid;gap:.1em;text-align:center;padding:.55em .3em;border:1px solid rgba(243,217,164,.55);border-radius:.6em;background:rgba(255,250,240,.07)}
+.tier span{font-size:.8em}.tier .p{font:900 1.9em/1.1 var(--hd);color:var(--lt)}
+.how{font-size:.78em;line-height:1.35}.how p{margin:0}
+.how b{display:block;margin-bottom:.15em;font:700 1.05em var(--hd);color:var(--lt)}
+.card{background:rgba(255,252,244,.72);box-shadow:0 .3em 1em rgba(75,54,27,.1),inset 0 0 0 1px rgba(181,138,78,.45)}
+.card h2{margin:0 0 .5em;padding:.28em .6em;text-align:center;border-radius:.4em;font:700 1.2em/1.1 var(--hd);color:var(--cream);background:linear-gradient(110deg,#3b4020,#50552c 48%,#3e4322) 0 0/200% 100%}
+.on .card h2{animation:ts 10s ease-in-out infinite}
+@keyframes ts{50%{background-position:100% 0}}
+.row{display:flex;align-items:baseline;gap:.4em;padding:.26em 0}
+.row .n{min-width:0}.row small{margin-left:.2em;font-size:.8em;font-style:italic;color:#786750}
+.row i{flex:1;min-width:.8em;border-bottom:.14em dotted rgba(130,83,42,.42);transform-origin:left;translate:0 -.2em}
+.on .row i{animation:draw 1s var(--ez) backwards;animation-delay:calc(.5s + var(--d,0)*1ms)}
+.p{display:inline-block;transform-origin:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;white-space:nowrap}
+.g2{display:grid;grid-template-columns:1fr 1fr;column-gap:1.4em}.g2 .row{font-size:.94em}.g2 .row:last-child:nth-child(odd){grid-column:1/-1}
+.duo{display:grid;grid-template-columns:1.15fr .85fr;gap:1.1em}.duo .row{font-size:.94em}
+.bn{margin:.6em 0 0;text-align:center;font-size:.72em;font-style:italic;color:#62533d}
+.av{align-self:center;padding:.5em 1.3em;font-size:.8em;border:1px solid rgba(134,85,43,.45);border-radius:2em;background:rgba(255,249,236,.85)}
+/* Destaque rotativo: uma seção por vez ganha a luz */
+[data-spot]{transition:transform 1s var(--ez),box-shadow 1s,background-color 1s}
+.on .spot{z-index:2;transform:scale(1.025);box-shadow:0 1.2em 2.6em rgba(75,54,27,.25),0 0 0 .14em var(--gold)}
+.on .spot.card{background:rgba(255,253,247,.98)}
+.on .spot .p{animation:pulse 1.6s ease-in-out 2}
+@keyframes pulse{50%{transform:scale(1.16);text-shadow:0 0 .6em rgba(146,56,31,.3)}}
+.on .spot h2{animation:glow 2.2s ease-in-out 2}
+@keyframes glow{50%{text-shadow:0 0 .5em rgba(146,56,31,.28)}}
+/* Transição e navegação */
+.ring{position:absolute;z-index:9;left:var(--x,50%);top:var(--y,50%);width:100%;aspect-ratio:1;border:.7cqw solid var(--gold);border-radius:50%;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(0);box-shadow:0 0 4cqw rgba(231,199,140,.7),inset 0 0 4cqw rgba(231,199,140,.5)}
+.pips{position:absolute;z-index:20;left:0;right:0;bottom:2.6%;display:flex;justify-content:center;gap:.6em;font-size:max(min(2.45cqw,1.378cqh),10.5px)}
+.pip{all:unset;cursor:pointer;width:1.4em;height:.32em;overflow:hidden;border-radius:1em;background:rgba(113,85,50,.22);transition:width .8s var(--ez)}
+.pip:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.pip.act{width:5.5em}.pip i{display:block;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--ol),var(--gold),var(--red))}
+.pip.act i{animation:fill var(--dur) linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){*,:before,:after{animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<main class="stage" aria-label="Cardápio digital Brasil à Mesa">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="botanical-sprig" viewBox="0 0 360 320"><g fill="none" stroke="#6b6538" stroke-width="4" stroke-linecap="round"><path d="M8 307 C86 254 112 189 147 126 S219 39 302 10"/><path d="M72 267 C48 233 34 207 30 177"/><path d="M110 211 C151 211 174 199 192 182"/><path d="M155 144 C125 111 117 83 122 58"/><path d="M209 82 C249 83 275 68 293 44"/></g><g fill="#777744" stroke="#484c27" stroke-width="2"><path d="M33 181 C-1 158 -6 119 5 92 C39 104 58 140 33 181Z"/><path d="M48 224 C83 207 100 177 94 151 C59 163 42 193 48 224Z"/><path d="M83 235 C53 219 35 195 39 174 C68 183 88 209 83 235Z"/><path d="M116 193 C146 164 177 158 199 170 C179 198 145 207 116 193Z"/><path d="M126 101 C93 80 83 48 92 24 C122 40 141 71 126 101Z"/><path d="M156 139 C184 106 215 97 238 110 C218 139 185 152 156 139Z"/><path d="M213 79 C207 45 222 18 245 8 C255 39 244 68 213 79Z"/><path d="M256 49 C270 20 300 8 323 17 C307 43 281 55 256 49Z"/><path d="M225 88 C246 56 277 45 299 57 C281 83 252 96 225 88Z"/><path d="M14 299 C8 268 20 243 42 230 C50 259 40 285 14 299Z"/></g><g fill="none" stroke="#b4a66b" stroke-width="2" opacity=".9"><path d="M8 97 L30 147 M42 179 L54 209 M95 27 L113 79 M163 141 L219 113 M218 77 L240 26 M258 49 L309 21"/></g><g transform="translate(177 223)"><g fill="#fff8e7" stroke="#c4a96c" stroke-width="1.5"><ellipse cx="0" cy="-15" rx="8" ry="13"/><ellipse cx="14" cy="-4" rx="8" ry="13" transform="rotate(66 14 -4)"/><ellipse cx="9" cy="12" rx="8" ry="13" transform="rotate(138 9 12)"/><ellipse cx="-9" cy="12" rx="8" ry="13" transform="rotate(218 -9 12)"/><ellipse cx="-14" cy="-4" rx="8" ry="13" transform="rotate(294 -14 -4)"/></g><circle r="5" fill="#b58036"/></g><g transform="translate(274 121) scale(.72)"><g fill="#fff8e7" stroke="#c4a96c" stroke-width="1.5"><ellipse cx="0" cy="-15" rx="8" ry="13"/><ellipse cx="14" cy="-4" rx="8" ry="13" transform="rotate(66 14 -4)"/><ellipse cx="9" cy="12" rx="8" ry="13" transform="rotate(138 9 12)"/><ellipse cx="-9" cy="12" rx="8" ry="13" transform="rotate(218 -9 12)"/><ellipse cx="-14" cy="-4" rx="8" ry="13" transform="rotate(294 -14 -4)"/></g><circle r="5" fill="#b58036"/></g></symbol></svg>
+
+<section class="screen hero on" data-dur="8" aria-label="Abertura Brasil à Mesa e Segundão 2026">
+<div class="paper"></div><svg class="bot tl" viewBox="0 0 360 320" aria-hidden="true"><use href="#botanical-sprig"/></svg><svg class="bot tr" viewBox="0 0 360 320" aria-hidden="true"><use href="#botanical-sprig"/></svg><svg class="bot bl" viewBox="0 0 360 320" aria-hidden="true"><use href="#botanical-sprig"/></svg><svg class="bot br" viewBox="0 0 360 320" aria-hidden="true"><use href="#botanical-sprig"/></svg>
+<header class="mh"><div class="eb" data-i>EXPO 2026 · TURMA DO 2º ANO</div><div class="brand" role="heading" aria-level="1" data-split>Brasil <i>à</i> Mesa</div><div class="sub" data-i style="--d:900">Gastronomia brasileira, afeto e tradição</div><div class="orn" data-i style="--d:1000"><b>✦</b></div></header>
+<div class="halo" data-i="z" style="--d:500"><div class="plaque"><img src="img/logo.webp" alt="Logo do Segundão 2026 com gorila azul e lettering branco e preto."></div></div>
+<footer class="ft"><div class="orn mark" data-i style="--d:1200">SEGUNDÃO · 2026</div><div class="cap" data-i style="--d:1300">Colégio Jim Willson</div><div class="note" data-i style="--d:1400">Uma celebração dos sabores do Brasil</div></footer>
+</section>
+
+<section class="screen menu" data-dur="42" data-gap="5200" aria-label="Cardápio com pratinhos, salgados, doces e bebidas">
+<div class="paper"></div><svg class="bot tl" viewBox="0 0 360 320" aria-hidden="true"><use href="#botanical-sprig"/></svg><svg class="bot br" viewBox="0 0 360 320" aria-hidden="true"><use href="#botanical-sprig"/></svg>
+<header class="mh"><div class="brand" data-i>Brasil <i>à</i> Mesa</div><div class="eb" data-i>Gastronomia · Homenagem a Helena Rizzo</div><h1 data-split>Cardápio</h1><div class="ev" data-i style="--d:600">EXPO 2026 · TURMA DO 2º ANO · COLÉGIO JIM WILLSON</div><div class="orn" data-i style="--d:650"><b>✦</b> Sabores do Brasil <b>✦</b></div></header>
+<section class="feat" data-spot data-i="l"><h2>Pratinhos</h2>
+<div class="tiers"><div class="tier" data-i="z"><span>Com 1 mistura</span><b class="p" data-v="10">R$ 10,00</b></div><div class="tier" data-i="z"><span>Com 2 misturas</span><b class="p" data-v="12">R$ 12,00</b></div><div class="tier" data-i="z"><span>Completo · 3 misturas</span><b class="p" data-v="14">R$ 14,00</b></div></div>
+<div class="how"><p data-i><b>Base</b>arroz ou baião.</p><p data-i><b>Acompanhamentos</b>farofa com carne de sol, salada de maionese e batata palha.</p><p data-i><b>Misturas</b>vatapá, creme de galinha e calabresa acebolada.</p></div></section>
+<section class="card" data-spot data-i="r"><h2>Salgados e lanches</h2><div class="g2" data-list="salg"></div></section>
+<div class="duo"><section class="card" data-spot data-i="l"><h2>Doces</h2><div data-list="doce"></div></section><section class="card" data-spot data-i="r"><h2>Bebidas</h2><div data-list="beb"></div><p class="bn">Refrigerantes: Coca-Cola Zero, Guaraná e São Geraldo.</p></section></div>
+<div class="av" data-i>Itens sujeitos à disponibilidade.</div>
+</section>
+
+<div class="ring"></div>
+<nav class="pips" aria-label="Seções do cardápio"><button class="pip" aria-label="Abertura"><i></i></button><button class="pip" aria-label="Cardápio"><i></i></button></nav>
+</main>
+<script>(()=>{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+/* Edite aqui preços e itens: [nome, unidade, preço] */
+const MENU={
+ salg:[['Mini-hambúrguer','unidade',5],['Pizza','fatia',6],['Lasanha','porção',8],['Empadão','fatia',6],['Torta de frango','fatia',6],['Esfiha','unidade',4],['Salgadinhos','5 unidades',5]],
+ doce:[['Bolo de chocolate com cobertura','fatia',5],['Bolo de cenoura com cobertura','fatia',5],['Pudim','fatia',5],['Brownie com cobertura','unidade',6]],
+ beb:[['Água','unidade',2.5],['Refrigerante','copo 200 ml',3.5],['Suco','copo 200 ml',3]]};
+const fmt=v=>'R$ '+v.toFixed(2).replace('.',',');
+$$('[data-list]').forEach(e=>e.innerHTML=MENU[e.dataset.list].map(([n,u,v])=>`<div class="row" data-i><span class="n">${n} <small>${u}</small></span><i></i><b class="p" data-v="${v}">${fmt(v)}</b></div>`).join(''));
+function split(n,c={i:0}){[...n.childNodes].forEach(k=>{if(k.nodeType===3){const f=document.createDocumentFragment();[...k.textContent].forEach(h=>{const s=document.createElement('span');s.className='ch';s.setAttribute('aria-hidden','true');s.textContent=h===' '?'\u00a0':h;s.style.setProperty('--i',c.i++);f.append(s)});k.replaceWith(f)}else split(k,c)})}
+$$('[data-split]').forEach(e=>{e.setAttribute('aria-label',e.textContent);split(e)});
+const S=$$('.screen'),P=$$('.pip'),R=$('.ring'),RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+S.forEach(s=>$$('[data-i]',s).forEach((e,i)=>e.style.getPropertyValue('--d')||e.style.setProperty('--d',i*55)));
+const D=S.map(s=>+s.dataset.dur*1000),O=[['50%','40%'],['50%','24%']];
+let cur=-1,T=[];
+const later=(f,ms)=>T.push(setTimeout(f,ms));
+function spot(s){const L=$$('[data-spot]',s);if(!L.length)return;let k=0;const tick=()=>{L.forEach((e,j)=>e.classList.toggle('spot',j===k%L.length));k++};later(()=>{tick();T.push(setInterval(tick,+s.dataset.gap))},3300)}
+function go(n){
+ T.forEach(clearTimeout);T=[];
+ $$('.spot').forEach(e=>e.classList.remove('spot'));
+ const a=S[cur],b=S[n];
+ S.forEach(s=>s!==a&&s.classList.remove('on','out'));
+ if(a&&a!==b){
+  /* Transição: onda circular que abre a próxima tela, acompanhada de um anel dourado */
+  const [x,y]=O[n],o={duration:1400,easing:'cubic-bezier(.65,0,.25,1)'};
+  a.classList.add('out');b.classList.add('on');
+  b.animate(RM?{opacity:[0,1]}:{clipPath:[`circle(0% at ${x} ${y})`,`circle(150% at ${x} ${y})`]},o);
+  if(!RM){R.style.setProperty('--x',x);R.style.setProperty('--y',y);
+  R.animate({transform:['translate(-50%,-50%) scale(0)','translate(-50%,-50%) scale(4.4)'],opacity:[1,.9]},o)}
+  later(()=>a.classList.remove('on','out'),1400);
+ }else{S.forEach(s=>s.classList.remove('on','out'));void b.offsetWidth;b.classList.add('on')}
+ cur=n;
+ P.forEach((p,i)=>{p.classList.remove('act');if(i===n){void p.offsetWidth;p.style.setProperty('--dur',D[n]+'ms');p.classList.add('act')}});
+  spot(b);
+ later(()=>go((n+1)%S.length),D[n]);
+}
+P.forEach((p,i)=>p.onclick=()=>go(i));
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')go((cur+1)%S.length);if(e.key==='ArrowLeft')go((cur+S.length-1)%S.length)});
+document.addEventListener('visibilitychange',()=>document.hidden?(T.forEach(clearTimeout),T=[]):go(cur));
+go(0);
+})();</script>
+</body>
+</html>
